@@ -9,23 +9,16 @@ A Node is defined as:
 */
 
 boolean hasCycle(Node head) {
-    Node Head = head;
-    int i = 0;
-  int a[] = new int [100];
-    while (head.next!=null){
-        a[i] = &head;
-        head = head.next;
-        i++;
-    } 
-    head = Head;
-    
-    while (head.next != null){
-        for(i=0;i<a.lengh();i++){
-            if(head.next == a[i]){
+    Node slow_p = head, fast_p = head;
+        while (slow_p != null && fast_p != null && fast_p.next != null) {
+            slow_p = slow_p.next;
+            fast_p = fast_p.next.next;
+            if (slow_p == fast_p) {
+                //System.out.println("Found loop");
                 return true;
             }
         }
-        head = head.next;
+        return false;
     }
 
 }
